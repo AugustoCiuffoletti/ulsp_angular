@@ -25,6 +25,10 @@ import { AuthenticationButtonComponent } from './components/authentication-butto
 import { AuthNavComponent } from './components/auth-nav/auth-nav.component';
 import { AccessoComponent } from './components/home-content/accesso/accesso.component';
 import { ToolsComponent } from './components/home-content/tools/tools.component';
+import { CreaComponent } from './components/home-content/tools/crea/crea.component';
+import { CollezionaComponent } from './components/home-content/tools/colleziona/colleziona.component';
+import { CaricaComponent } from './components/home-content/tools/carica/carica.component';
+import { CloseToolComponent } from './components/home-content/tools/close-tool/close-tool.component';
 
 
 @NgModule({
@@ -46,6 +50,10 @@ import { ToolsComponent } from './components/home-content/tools/tools.component'
     AuthNavComponent,
     AccessoComponent,
     ToolsComponent,
+    CreaComponent,
+    CollezionaComponent,
+    CaricaComponent,
+    CloseToolComponent,
   ],
   imports: [
     BrowserModule,
