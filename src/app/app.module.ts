@@ -23,6 +23,8 @@ import { SignupButtonComponent } from './components/signup-button/signup-button.
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 import { AuthenticationButtonComponent } from './components/authentication-button/authentication-button.component';
 import { AuthNavComponent } from './components/auth-nav/auth-nav.component';
+import { AccessoComponent } from './components/home-content/accesso/accesso.component';
+import { ToolsComponent } from './components/home-content/tools/tools.component';
 
 
 @NgModule({
@@ -42,6 +44,8 @@ import { AuthNavComponent } from './components/auth-nav/auth-nav.component';
     LogoutButtonComponent,
     AuthenticationButtonComponent,
     AuthNavComponent,
+    AccessoComponent,
+    ToolsComponent,
   ],
   imports: [
     BrowserModule,
