@@ -1,0 +1,22 @@
+<div *ngIf="tool === ''">
+<label>Seleziona uno strumento:</label>
+  <ul>
+    <li>
+		<button (click)="seleziona('crea')">Crea una immagine da una mappa</button>
+		<p>descrizione</p>
+	</li>
+    <li>
+		<button (click)="seleziona('colleziona')">Colleziona una serie di punti</button>
+		<p>Colleziona punti</p>
+	</li>
+    <li>
+		<button (click)="seleziona('carica')">Carica dati</button> <p>Carica un file geojson</p>
+    </li>
+  </ul>
+</div>
+
+<app-crea *ngIf="tool === 'crea'"> </app-crea>
+<app-colleziona *ngIf="tool === 'colleziona'"> </app-colleziona>
+<app-carica *ngIf="tool === 'carica'"> </app-carica>
+
+<app-close-tool (toolClosed)="tool=''" *ngIf="tool !== ''"> </app-close-tool>
