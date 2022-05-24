@@ -13,16 +13,40 @@ export class CollezionaComponent implements OnInit {
   zoom = 10;
   
   constructor() { }
-
+  
+  aMap;
+  // An array of markers
+  markers = L.layerGroup();
+  
   ngOnInit(): void {
-	var aMap = L.map('mapid', {
+	  
+	this.aMap = L.map('mapid', {
       center: L.latLng(this.centerLat, this.centerLng),
       zoom: this.zoom,
-      zoomControl: false,
-      dragging: false,
-      scrollWheelZoom: false,
       layers: [L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')],
     });
-  }
+    
+    this.markers.addTo(this.aMap);
+    // Add controls for the layer
+    L.control.layers(
+      {},                        // base layers, radio buttons
+      {"Markers": this.markers}  // overlay layers, checkbox buttons
+    ).addTo(this.aMap);
 
+    
+    this.aMap.on("click", e => {
+      // Get a handle for the DOM element containing the list of coordinates
+      let displayCoord = document.getElementById('displayCoord');
+      // Add a marker with the coordinates in the event descriptor
+      let aMarker = L.marker(e.latlng).addTo(this.aMap);
+	  this.markers.addLayer(aMarker);
+      // Concatenate the new coordinates in the DOM element
+      displayCoord.innerHTML +=
+        aMarker.getLatLng().lat.toFixed(5) + // truncate coordinates
+        ', ' +
+        aMarker.getLatLng().lng.toFixed(5) +
+        '<br>';
+      console.log('%c ' + JSON.stringify(this.markers.toGeoJSON()));
+    });
+  }
 }
