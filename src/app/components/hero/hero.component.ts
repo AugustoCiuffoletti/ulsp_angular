@@ -5,7 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './hero.component.html',
 })
 export class HeroComponent implements OnInit {
-  heroLogo = 'https://cdn.auth0.com/blog/auth0-angular-sample/assets/logo.png';
+  heroLogo = './assets/logo.png';
+//   https://cdn.auth0.com/blog/auth0-angular-sample/assets/logo.png';
 
   constructor() {}
 
