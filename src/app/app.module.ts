@@ -30,6 +30,7 @@ import { CollezionaComponent } from './components/home-content/tools/colleziona/
 import { CaricaComponent } from './components/home-content/tools/carica/carica.component';
 import { CloseToolComponent } from './components/home-content/tools/close-tool/close-tool.component';
 
+import { StorageService } from "./components/home-content/tools/storage.service";
 
 @NgModule({
   declarations: [
