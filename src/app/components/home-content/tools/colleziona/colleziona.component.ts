@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import * as L from 'leaflet';
 
 @Component({
@@ -7,12 +8,12 @@ import * as L from 'leaflet';
   styleUrls: ['./colleziona.component.css']
 })
 export class CollezionaComponent implements OnInit {
-
   centerLat = 46.067;
   centerLng = 11.121;
   zoom = 10;
+  downloadURL: SafeUrl;
   
-  constructor() { }
+  constructor(private sanitizer: DomSanitizer) { }
   
   aMap;
   // An array of markers
@@ -32,7 +33,6 @@ export class CollezionaComponent implements OnInit {
       {},                        // base layers, radio buttons
       {"Markers": this.markers}  // overlay layers, checkbox buttons
     ).addTo(this.aMap);
-
     
     this.aMap.on("click", e => {
       // Get a handle for the DOM element containing the list of coordinates
@@ -46,7 +46,15 @@ export class CollezionaComponent implements OnInit {
         ', ' +
         aMarker.getLatLng().lng.toFixed(5) +
         '<br>';
-      console.log('%c ' + JSON.stringify(this.markers.toGeoJSON()));
+      let markersGeoJSON = JSON.stringify(this.markers.toGeoJSON());
+      this.downloadURL= this.sanitizer.bypassSecurityTrustUrl(
+		'data:' + 
+		'text/json;charset=UTF-8' + 
+		',' + 
+		encodeURIComponent(markersGeoJSON)
+	  );
+      console.log(this.downloadURL);
     });
-  }
+
+  };
 }

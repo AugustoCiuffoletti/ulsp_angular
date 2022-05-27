@@ -21,6 +21,7 @@ export class CaricaComponent implements OnInit {
         this.profile = { ...data };
       }
     });
+    this.authService.idTokenClaims$.subscribe((claims) => console.log(claims));
   }
 
   remove(query: string) {
