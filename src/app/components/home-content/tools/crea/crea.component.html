@@ -1,1 +1,24 @@
-<p>crea works!</p>
+<head>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""
+  />
+  <script
+    src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""
+  ></script>
+</head>
+
+
+<h3>Selezione punti per prossimità</h3>
+  <p>Raggio di selezione: 
+    <input #queryBox style="width: 80px;" type="text" id="radiusBox" placeholder="1" (keyup.enter)="setRadius(queryBox.value)" /> metri
+  </p>
+<div id=response>
+</div>
+<h4>Seleziona il centro</h4>
+<div id=mapQuery style="height: 300pt">
+</div>

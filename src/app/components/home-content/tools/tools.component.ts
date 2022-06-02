@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-tools',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tools.component.css']
 })
 export class ToolsComponent implements OnInit {
+
+  @Output() activeTool = new EventEmitter<string>();
 
   constructor() { }
   
@@ -15,6 +17,7 @@ export class ToolsComponent implements OnInit {
   }
 
   seleziona(nomeTool: string) {
-    this.tool = nomeTool;
+    this.tool = nomeTool;	
+	this.activeTool.emit(nomeTool);
   }
 }

@@ -8,11 +8,11 @@ import { StorageService } from '../storage.service';
   styleUrls: ['./carica.component.css']
 })
 export class CaricaComponent implements OnInit {
-
-  profile: object;
-
+  
+  profile: any;
+  
   constructor(public authService: AuthService, private db: StorageService) {}
-
+  
   ngOnInit() {
     this.authService.user$.subscribe((data) => {
       if (data) {
@@ -56,8 +56,6 @@ export class CaricaComponent implements OnInit {
       console.error('Non compliant filename: ' + e);
       throw e;
     }
-    console.log(date);
-    console.log(description);
     let obs = this.db.stat(source);
     obs.subscribe({
       next: (responseText: string) => {
@@ -80,14 +78,16 @@ export class CaricaComponent implements OnInit {
               throw 'Not a FeatureCollection';
             }
             let n = 0;
-            for (let feature of data['features']) {
-              feature.source = file.name.split('.')[0];
-              feature.serial = n + 1;
-              //console.log(JSON.stringify(feature));
-              n = n + 1;
-            }
-            let obs = this.db.upload(JSON.stringify(data['features']));
-            console.log(JSON.stringify(data));
+            let features = data['features'].map(f => {
+				let g = f['geometry'];
+				g.source = file.name.split('.')[0];
+				g.serial = n+1;
+				g.owner = this.profile.email;
+				n=n+1;
+				return g;
+				});
+            let obs = this.db.upload(JSON.stringify(features));
+            console.log(JSON.stringify(features));
             obs.subscribe({
               next: (responseText: string) => {
                 console.log('Uploaded ' + responseText);

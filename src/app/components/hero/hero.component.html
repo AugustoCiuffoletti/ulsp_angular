@@ -1,4 +1,4 @@
-<div class="text-center hero">
+<div class="text-center hero" *ngIf="(auth.isAuthenticated$ | async) === false" >
   <img
     class="mb-3 app-logo"
     src="{{ heroLogo }}"
@@ -19,5 +19,5 @@
     </a>
   </p>
 -->
-  
+<hr  style="width:100%;height:2px;border-width:0;color:velvet;background-color:gray" />
 </div>

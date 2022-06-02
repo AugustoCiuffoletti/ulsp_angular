@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { AuthService } from '@auth0/auth0-angular';
+import { StorageService } from '../storage.service';
 import * as L from 'leaflet';
 
 @Component({
@@ -8,19 +10,25 @@ import * as L from 'leaflet';
   styleUrls: ['./colleziona.component.css']
 })
 export class CollezionaComponent implements OnInit {
+  profile: any;
   centerLat = 46.067;
   centerLng = 11.121;
   zoom = 10;
   downloadURL: SafeUrl;
   
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer, public authService: AuthService, private db: StorageService) { }
   
   aMap;
   // An array of markers
   markers = L.layerGroup();
   
   ngOnInit(): void {
-	  
+	 
+	this.authService.user$.subscribe((data) => {
+    if (data) {
+      this.profile = { ...data };
+    }});
+
 	this.aMap = L.map('mapid', {
       center: L.latLng(this.centerLat, this.centerLng),
       zoom: this.zoom,
