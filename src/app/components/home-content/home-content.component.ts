@@ -8,8 +8,15 @@ import { AuthService } from '@auth0/auth0-angular';
 })
 export class HomeContentComponent implements OnInit {
   faLink = faLink;
+  tool: string;
 
   constructor(public auth: AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+	this.tool = '';  
+  }
+  
+  setTool(t) {
+	this.tool=t;
+  }
 }

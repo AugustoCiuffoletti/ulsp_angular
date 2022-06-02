@@ -1,4 +1,30 @@
 <app-accesso *ngIf="(auth.isAuthenticated$ | async) === false">
 </app-accesso>
 
-<app-tools *ngIf="auth.isAuthenticated$ | async"> </app-tools>
+<div *ngIf="auth.isAuthenticated$ | async">
+  <div *ngIf='tool === "crea"' width="200px">
+	<h2>
+	  Esplora e visualizza i dati nel database
+	</h2>
+  </div>
+  
+  <div *ngIf='tool === "colleziona"'>
+	<h2>
+	  Crea un file GeoJSON 'Point and Click'
+	</h2>
+  </div>
+  
+  <div *ngIf='tool === "carica"'>
+	<h2>
+	  Gestisci il contenuto del database
+	</h2>
+  </div>
+
+  <div *ngIf='tool === ""'>
+	<h2>
+	  Seleziona lo strumento
+	</h2>
+  </div>
+<hr />	
+<app-tools (activeTool)="setTool($event)"> </app-tools>
+</div>

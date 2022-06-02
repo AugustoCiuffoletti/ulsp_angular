@@ -11,8 +11,8 @@ import * as L from 'leaflet';
 })
 export class CollezionaComponent implements OnInit {
   profile: any;
-  centerLat = 46.067;
-  centerLng = 11.121;
+  centerLat = 44.0;
+  centerLng = 10.3;
   zoom = 10;
   downloadURL: SafeUrl;
   
@@ -34,6 +34,8 @@ export class CollezionaComponent implements OnInit {
       zoom: this.zoom,
       layers: [L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')],
     });
+    
+    L.control.scale().addTo(this.aMap);
     
     this.markers.addTo(this.aMap);
     // Add controls for the layer

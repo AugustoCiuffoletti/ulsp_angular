@@ -1,4 +1,4 @@
-<div class="navbar-nav mr-auto">
+<div class="navbar-nav mr-auto" *ngIf="auth.isAuthenticated$ | async">
     <img
     class="mb-3 app-logo"
     src="{{ heroLogo }}"
@@ -16,7 +16,7 @@
       Home
     </a>
   </div>
-  <div class="nav-item" *ngIf="auth.isAuthenticated$ | async">
+  <div class="nav-item" >
     <a
       routerLink="/profile"
       class="nav-link"
@@ -25,7 +25,7 @@
       Profile
     </a>
   </div>
-  <div class="nav-item" *ngIf="auth.isAuthenticated$ | async">
+<!--  <div class="nav-item" *ngIf="auth.isAuthenticated$ | async">
     <a
       routerLink="/external-api"
       class="nav-link"
@@ -34,4 +34,5 @@
       External API
     </a>
   </div>
+-->
 </div>

@@ -13,12 +13,14 @@
 </head>
 
 
-<h3>Selezione punti per prossimità</h3>
-  <p>Raggio di selezione: 
-    <input #queryBox style="width: 80px;" type="text" id="radiusBox" placeholder="1" (keyup.enter)="setRadius(queryBox.value)" /> metri
-  </p>
-<div id=response>
-</div>
+
+
 <h4>Seleziona il centro</h4>
 <div id=mapQuery style="height: 300pt">
 </div>
+<h4>Imposta il raggio</h4>
+<p>
+  <input #queryBox style="width: 80px;" type="text" id="radiusBox" placeholder="1" (keyup.enter)="setRadius(queryBox.value)" /> metri
+</p>
+<div id=response>
+</div> 
