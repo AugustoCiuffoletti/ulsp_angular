@@ -83,6 +83,9 @@ export class CaricaComponent implements OnInit {
 				g.source = file.name.split('.')[0];
 				g.serial = n+1;
 				g.owner = this.profile.email;
+				let p = f['properties'];
+				g.name = p.name;
+				g.description = p.description;
 				n=n+1;
 				return g;
 				});

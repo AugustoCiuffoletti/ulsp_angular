@@ -50,7 +50,6 @@ export class CreaComponent implements OnInit {
 			this.aMap.removeLayer(this.circle);
 			this.markers.clearLayers();
 		}
-		console.log("Ecco: " + this.radius);
 		this.circle = L.circle(this.center, { color: 'blue', fillColor: '#f03', fillOpacity: 0.1, radius: this.radius } );
 		this.centerMarker = L.marker(this.center).addTo(this.aMap);
 		this.circle.addTo(this.aMap);
@@ -84,7 +83,7 @@ export class CreaComponent implements OnInit {
         features.map( f => { 
 			if ( f.type === "Point" ) {
 				console.log(f);
-				let m = L.marker([ f.coordinates[1], f.coordinates[0] ], { title: "hallo" }).addTo(this.aMap);
+				let m = L.marker([ f.coordinates[1], f.coordinates[0] ], { title: f.name }).addTo(this.aMap);
 				this.markers.addLayer(m);
 			}; 
 		} );
