@@ -19,6 +19,7 @@ export class CreaComponent implements OnInit {
   centerMarker: any;
   radius = 1000.0;
   circle: any;
+  markers = L.layerGroup();
   
   constructor(public authService: AuthService, private db: StorageService) { }
 
@@ -28,18 +29,27 @@ export class CreaComponent implements OnInit {
     if (data) {
       this.profile = { ...data };
     }});
-    
+// Create a map    
     this.aMap = L.map('mapQuery', {
       center: L.latLng(this.initLat, this.initLng),
       zoom: this.zoom,
       layers: [L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')],
     });
-    
+// Add a scale to the map    
     L.control.scale().addTo(this.aMap);
+// Add an array of markers as a layer
+//	var markers = L.layerGroup();
+	this.markers.addTo(this.aMap);
+// Add controls for the new layer
+	L.control.layers( {}, { Markers: this.markers } ).addTo(this.aMap);
     
     this.aMap.on("click", e => {
 		this.center = e.latlng;
-		if ( this.centerMarker ) { this.aMap.removeLayer(this.centerMarker); this.aMap.removeLayer(this.circle) }
+		if ( this.centerMarker ) { 
+			this.aMap.removeLayer(this.centerMarker);
+			this.aMap.removeLayer(this.circle);
+			this.markers.clearLayers();
+		}
 		console.log("Ecco: " + this.radius);
 		this.circle = L.circle(this.center, { color: 'blue', fillColor: '#f03', fillOpacity: 0.1, radius: this.radius } );
 		this.centerMarker = L.marker(this.center).addTo(this.aMap);
@@ -68,15 +78,23 @@ export class CreaComponent implements OnInit {
 			}}};
     let obs = this.db.query(q);
     obs.subscribe({
-      next: (responseText: object) => {
-        console.log(responseText);
-        document.getElementById('response').innerHTML = JSON.stringify(responseText);
-        (<HTMLInputElement>document.getElementById('response')).value = '';
+      next: (features: any[]) => {
+        console.log(features);
+        document.getElementById('response').innerHTML = JSON.stringify(features);
+        features.map( f => { 
+			if ( f.type === "Point" ) {
+				console.log(f);
+				let m = L.marker([ f.coordinates[1], f.coordinates[0] ], { title: "hallo" }).addTo(this.aMap);
+				this.markers.addLayer(m);
+			}; 
+		} );
+//       (<HTMLInputElement>document.getElementById('response')).value = '';
+        
       },
       error: (e: Error) => {
         console.error(e);
         document.getElementById('response').innerHTML = e.message;
-        (<HTMLInputElement>document.getElementById('response')).value = '';
+//        (<HTMLInputElement>document.getElementById('response')).value = '';
         throw e.message;
       }
     }); 
