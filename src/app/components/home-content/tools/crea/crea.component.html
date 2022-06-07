@@ -20,7 +20,7 @@
 </div>
 <h4>Imposta il raggio</h4>
 <p>
-  <input #queryBox style="width: 80px;" type="text" id="radiusBox" placeholder="1" (keyup.enter)="setRadius(queryBox.value)" /> metri
+  <input #queryBox style="width: 80px;" type="text" id="radiusBox" placeholder="{{ this.radius }}" (keyup.enter)="setRadius(queryBox.value)" /> metri
 </p>
 <div id=response>
 </div> 
