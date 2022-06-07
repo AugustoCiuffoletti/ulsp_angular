@@ -51,7 +51,7 @@ export class CreaComponent implements OnInit {
 			this.markers.clearLayers();
 		}
 		this.circle = L.circle(this.center, { color: 'blue', fillColor: '#f03', fillOpacity: 0.1, radius: this.radius } );
-		this.centerMarker = L.marker(this.center).addTo(this.aMap);
+		this.centerMarker = L.marker( this.center ).addTo( this.aMap );
 		this.circle.addTo(this.aMap);
 		console.log(JSON.stringify(this.center));
 		this.query(this.radius,this.center["lng"],this.center["lat"]);
