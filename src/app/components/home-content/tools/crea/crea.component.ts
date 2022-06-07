@@ -8,12 +8,17 @@ import * as L from 'leaflet';
   templateUrl: './crea.component.html',
   styleUrls: ['./crea.component.css']
 })
-export class CreaComponent implements OnInit {
 
+export class CreaComponent implements OnInit {
+  centerIcon = L.icon({
+  iconUrl: './assets/crosshair.png',
+  iconSize:     [30, 30],
+  iconAnchor:   [15, 15],
+});
   profile: any;
   initLat = 44.0;
   initLng = 10.3;
-  zoom = 10;
+  zoom = 11;
   aMap: any;
   center: any;
   centerMarker: any;
@@ -29,6 +34,7 @@ export class CreaComponent implements OnInit {
     if (data) {
       this.profile = { ...data };
     }});
+    
 // Create a map    
     this.aMap = L.map('mapQuery', {
       center: L.latLng(this.initLat, this.initLng),
@@ -43,6 +49,7 @@ export class CreaComponent implements OnInit {
 // Add controls for the new layer
 	L.control.layers( {}, { Markers: this.markers } ).addTo(this.aMap);
     
+// Bind click event to a callback    
     this.aMap.on("click", e => {
 		this.center = e.latlng;
 		if ( this.centerMarker ) { 
@@ -51,14 +58,15 @@ export class CreaComponent implements OnInit {
 			this.markers.clearLayers();
 		}
 		this.circle = L.circle(this.center, { color: 'blue', fillColor: '#f03', fillOpacity: 0.1, radius: this.radius } );
-		this.centerMarker = L.marker( this.center ).addTo( this.aMap );
+		this.centerMarker = L.marker( this.center , {icon: this.centerIcon}).addTo( this.aMap );
 		this.circle.addTo(this.aMap);
 		console.log(JSON.stringify(this.center));
 		this.query(this.radius,this.center["lng"],this.center["lat"]);
       }
 	)
   }
-  
+
+// Set interest region depending on radius  
   setRadius(r: number) {
 	  this.radius = r;
 	  if ( this.circle ) { this.aMap.removeLayer(this.circle) }
