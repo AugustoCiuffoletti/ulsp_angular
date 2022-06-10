@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, OnInit, OnDestroy } from '@angular/core';
 import { ActiveToolService } from "../../../active-tool.service";
 import { Subscription } from 'rxjs';
 
@@ -9,18 +9,20 @@ import { Subscription } from 'rxjs';
 })
 export class ToolsComponent implements OnInit {
 
-  @Output() activeTool = new EventEmitter<string>();
+  constructor( private tool: ActiveToolService ) { }
+  
+  activeTool: string;
+  activeToolObserver: Subscription;
 
-  constructor( private otool: ActiveToolService ) { }
+  ngOnInit() {
+	this.activeToolObserver = this.tool.toolName.subscribe(t => this.activeTool = t)
+  }
   
-  tool: string = '';
-  
-  ngOnInit(): void {
+  ngOnDestroy() {
+    this.activeToolObserver.unsubscribe();
   }
 
   seleziona(nomeTool: string) {
-    this.tool = nomeTool;	
-	this.activeTool.emit(nomeTool);
-	this.otool.changeTool(nomeTool)
+	this.tool.changeTool(nomeTool)
   }
 }

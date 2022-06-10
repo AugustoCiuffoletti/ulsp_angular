@@ -17,11 +17,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor( private tool: ActiveToolService ) { }
 
   ngOnInit() {
-	try {
-		this.activeToolObserver = this.tool.toolName.subscribe(t => this.activeTool = t)
-    } catch(e) {
-	    console.log("Errore subscribing toolName: " + JSON.stringify(e))
-	}
+	this.activeToolObserver = this.tool.toolName.subscribe(t => this.activeTool = t)
   }
   
   ngOnDestroy() {

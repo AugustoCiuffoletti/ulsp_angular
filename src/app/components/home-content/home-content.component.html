@@ -3,29 +3,29 @@
 </app-accesso>
 
 <div *ngIf="auth.isAuthenticated$ | async">
-  <div *ngIf='tool === "crea"' width="200px">
+  <div *ngIf='activeTool === "crea"' width="200px">
 	<h2 class="my-5 text-center"> 
 	  Esplora e visualizza i dati nel database
 	</h2>
   </div>
   
-  <div *ngIf='tool === "colleziona"'>
+  <div *ngIf='activeTool === "colleziona"'>
 	<h2 class="my-5 text-center"> 
 	  Crea un file GeoJSON 'Point and Click'
 	</h2>
   </div>
   
-  <div *ngIf='tool === "carica"'>
+  <div *ngIf='activeTool === "carica"'>
 	<h2 class="my-5 text-center"> 
 	  Gestisci il contenuto del database
 	</h2>
   </div>
 
-  <div *ngIf='tool === ""'>
+  <div *ngIf='activeTool === ""'>
 	<h2 class="my-5 text-center"> 
 	  Seleziona lo strumento
 	</h2>
   </div>
 <hr />	
-<app-tools (activeTool)="setTool($event)"> </app-tools>
+<app-tools> </app-tools>
 </div>
