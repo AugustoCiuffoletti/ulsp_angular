@@ -1,5 +1,5 @@
 .button {
-  background-color: #0f0;
+  background-color: #0c6;
   border: none;
   color: #222;
   padding: 10px 15px;
@@ -8,6 +8,8 @@
   display: inline-block;
   margin: 4px 4px;
   cursor: pointer;
+  font-variant: small-caps;
+  font-weight: bold;
   border-radius: 16px;
 }
 
