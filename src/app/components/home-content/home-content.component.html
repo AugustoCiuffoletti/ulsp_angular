@@ -4,25 +4,25 @@
 
 <div *ngIf="auth.isAuthenticated$ | async">
   <div *ngIf='activeTool === "crea"' width="200px">
-	<h2 class="my-5 text-center"> 
+	<h2 class="my-5 text-center toolHeader"> 
 	  Esplora e visualizza i dati nel database
 	</h2>
   </div>
   
   <div *ngIf='activeTool === "colleziona"'>
-	<h2 class="my-5 text-center"> 
+	<h2 class="my-5 text-center toolHeader"> 
 	  Crea un file GeoJSON 'Point and Click'
 	</h2>
   </div>
   
   <div *ngIf='activeTool === "carica"'>
-	<h2 class="my-5 text-center"> 
+	<h2 class="my-5 text-center toolHeader"> 
 	  Gestisci il contenuto del database
 	</h2>
   </div>
 
   <div *ngIf='activeTool === ""'>
-	<h2 class="my-5 text-center"> 
+	<h2 class="my-5 text-center toolHeader"> 
 	  Seleziona lo strumento
 	</h2>
   </div>

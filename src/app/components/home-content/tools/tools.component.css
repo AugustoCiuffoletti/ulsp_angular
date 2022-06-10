@@ -5,6 +5,9 @@
   padding: 10px 15px;
   text-align: center;
   text-decoration: none;
+  font-size: 22px;
+  font-variant: small-caps;
+  font-weight: bold;
   display: inline-block;
   margin: 4px 4px;
   cursor: pointer;
@@ -13,4 +16,19 @@
 
 .button:hover {
   background-color: #66f;
+}
+
+.legend {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: bold;
+  color: #222;
+}
+
+.toolHeader {
+  text-align: center;
+  text-decoration: none;
+  font-size: 22px;
+  font-variant: small-caps;
+  font-weight: bold;
 }
