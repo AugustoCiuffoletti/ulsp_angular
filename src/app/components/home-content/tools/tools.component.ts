@@ -1,4 +1,6 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { ActiveToolService } from "../../../active-tool.service";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tools',
@@ -9,7 +11,7 @@ export class ToolsComponent implements OnInit {
 
   @Output() activeTool = new EventEmitter<string>();
 
-  constructor() { }
+  constructor( private otool: ActiveToolService ) { }
   
   tool: string = '';
   
@@ -19,5 +21,6 @@ export class ToolsComponent implements OnInit {
   seleziona(nomeTool: string) {
     this.tool = nomeTool;	
 	this.activeTool.emit(nomeTool);
+	this.otool.changeTool(nomeTool)
   }
 }

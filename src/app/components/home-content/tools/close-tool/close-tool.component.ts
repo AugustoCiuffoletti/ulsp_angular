@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ActiveToolService } from "../../../../active-tool.service";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-close-tool',
@@ -8,13 +10,14 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class CloseToolComponent implements OnInit {
   @Output() toolClosed = new EventEmitter();
   
-  constructor() { }
+  constructor( private otool: ActiveToolService  ) { }
 
   ngOnInit(): void {
   }
 
   closeTool() {
 	this.toolClosed.emit();
+	this.otool.changeTool("")
   }
 
 }

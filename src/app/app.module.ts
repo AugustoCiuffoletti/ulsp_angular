@@ -31,6 +31,7 @@ import { CaricaComponent } from './components/home-content/tools/carica/carica.c
 import { CloseToolComponent } from './components/home-content/tools/close-tool/close-tool.component';
 
 import { StorageService } from "./components/home-content/tools/storage.service";
+import { ActiveToolService } from "./active-tool.service";
 
 @NgModule({
   declarations: [
